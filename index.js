@@ -14,18 +14,23 @@ var commentRoutes = require('./routes/comments.js');
 
 const app = express();
 
-app.use(logger('dev'));
-app.use(bodyParser.json({ limit: '30mb', extended: true }));
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
-
-app.use(cors());
-
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public', "game-reviews")));
 app.get('/game-reviews/*', function (req,res) {
     res.sendFile(path.join(__dirname, 'public', 'game-reviews', 'index.html'));
 })
+
+app.use(logger('dev'));
+app.use(bodyParser.json({ limit: '30mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
+
+app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public', "game-reviews")));
+// app.get('/game-reviews/*', function (req,res) {
+//     res.sendFile(path.join(__dirname, 'public', 'game-reviews', 'index.html'));
+// })
 
 app.use('/posts', postRoutes);
 app.use('/auth', userRoutes);

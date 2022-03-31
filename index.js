@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var path = require('path');
 var mongoose = require('mongoose');
+var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 require('dotenv').config()
 
